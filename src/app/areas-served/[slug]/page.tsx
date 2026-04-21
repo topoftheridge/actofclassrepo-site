@@ -3,7 +3,14 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Hero from "@/components/Hero";
 import ContactForm from "@/components/ContactForm";
-import { locations, getLocation, getLocationSlugs } from "@/data/locations";
+import {
+  locations,
+  getLocation,
+  getLocationSlugs,
+  getPrimaryLocations,
+  getSecondaryLocations,
+  fortMyersNeighborhoods,
+} from "@/data/locations";
 import { services } from "@/data/services";
 
 interface Props {
@@ -19,8 +26,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const location = getLocation(slug);
   if (!location) return {};
   return {
-    title: `${location.adjective} Movers in ${location.name}, FL`,
-    description: `${location.adjective} movers in ${location.name}, FL. Act of Class Moving & Storage offers professional moving services with 20+ years of experience. Free estimates.`,
+    title: `${location.adjective} Movers in ${location.name}, FL | Act of Class Moving`,
+    description: `${location.adjective} movers in ${location.name}, FL. Act of Class Moving & Storage offers professional moving services with 20+ years of experience. Free estimates — call (239) 539-4761.`,
   };
 }
 
@@ -29,7 +36,12 @@ export default async function LocationPage({ params }: Props) {
   const location = getLocation(slug);
   if (!location) notFound();
 
-  const otherLocations = locations.filter((l) => l.slug !== slug).slice(0, 8);
+  const isSecondary = location.tier === "secondary";
+  const isFortMyers = location.slug === "fort-myers";
+
+  // Build "Other Areas" links — show primary cities first, then secondary
+  const primaryLocations = getPrimaryLocations().filter((l) => l.slug !== slug);
+  const secondaryLocations = getSecondaryLocations().filter((l) => l.slug !== slug);
 
   return (
     <>
@@ -43,6 +55,20 @@ export default async function LocationPage({ params }: Props) {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Main Content */}
             <div className="lg:col-span-2">
+              {/* Secondary pages: reference Fort Myers in intro */}
+              {isSecondary && location.parentCity && (
+                <p className="text-gray-600 mb-8 text-lg">
+                  {location.name} is located in the greater{" "}
+                  <Link
+                    href={`/areas-served/${location.parentCity}`}
+                    className="text-primary font-semibold hover:underline"
+                  >
+                    Fort Myers
+                  </Link>{" "}
+                  area. Our team has been proudly serving this community for over 20 years.
+                </p>
+              )}
+
               <h2 className="text-2xl font-bold text-dark mb-6">
                 Why Choose Act of Class for Your {location.name} Move?
               </h2>
@@ -56,7 +82,7 @@ export default async function LocationPage({ params }: Props) {
               </div>
 
               <h2 className="text-2xl font-bold text-dark mb-4">
-                Moving Services Available in {location.name}
+                Moving Services in {location.name}
               </h2>
               <p className="text-gray-600 mb-6">
                 As a full-service moving company with over 20 years of experience, we offer comprehensive
@@ -72,7 +98,9 @@ export default async function LocationPage({ params }: Props) {
                   >
                     <span className="text-2xl">{s.icon}</span>
                     <div>
-                      <p className="font-semibold text-dark">{s.name}</p>
+                      <p className="font-semibold text-dark">
+                        {s.name} in {location.name}
+                      </p>
                       <p className="text-xs text-gray-500">Learn more →</p>
                     </div>
                   </Link>
@@ -93,22 +121,72 @@ export default async function LocationPage({ params }: Props) {
                 </div>
               )}
 
+              {/* Fort Myers: Neighborhoods We Serve section */}
+              {isFortMyers && (
+                <div className="mb-12">
+                  <h2 className="text-2xl font-bold text-dark mb-6">
+                    Neighborhoods We Serve in Fort Myers
+                  </h2>
+                  <p className="text-gray-600 mb-6">
+                    Our team knows Fort Myers inside and out. Here are some of the many neighborhoods
+                    and communities where we provide professional moving services:
+                  </p>
+                  <div className="space-y-4">
+                    {fortMyersNeighborhoods.map((n) => (
+                      <div
+                        key={n.name}
+                        className="p-4 rounded-lg bg-gray-50 border border-gray-100"
+                      >
+                        <h3 className="font-semibold text-dark mb-1">{n.name}</h3>
+                        <p className="text-gray-600 text-sm">{n.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Other Areas We Serve */}
               <h2 className="text-2xl font-bold text-dark mb-4">
                 Other Areas We Serve
               </h2>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                {otherLocations.map((loc) => (
-                  <Link
-                    key={loc.slug}
-                    href={`/areas-served/${loc.slug}`}
-                    className="text-sm text-gray-600 hover:text-primary transition py-1"
-                  >
-                    {loc.name}, FL →
-                  </Link>
-                ))}
+              <div className="mb-3">
+                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">
+                  Cities
+                </h3>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                  {primaryLocations.map((loc) => (
+                    <Link
+                      key={loc.slug}
+                      href={`/areas-served/${loc.slug}`}
+                      className="text-sm text-gray-700 hover:text-primary font-medium transition py-1"
+                    >
+                      {loc.name}, FL →
+                    </Link>
+                  ))}
+                </div>
+              </div>
+              {secondaryLocations.length > 0 && (
+                <div className="mt-4">
+                  <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">
+                    Communities
+                  </h3>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    {secondaryLocations.map((loc) => (
+                      <Link
+                        key={loc.slug}
+                        href={`/areas-served/${loc.slug}`}
+                        className="text-sm text-gray-600 hover:text-primary transition py-1"
+                      >
+                        {loc.name}, FL →
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+              <div className="mt-4">
                 <Link
                   href="/areas-served"
-                  className="text-sm text-primary font-semibold hover:underline py-1"
+                  className="text-sm text-primary font-semibold hover:underline"
                 >
                   View All Areas →
                 </Link>

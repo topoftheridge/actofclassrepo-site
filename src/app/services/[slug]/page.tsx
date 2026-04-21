@@ -6,6 +6,7 @@ import SplitHero from "@/components/SplitHero";
 import FAQ from "@/components/FAQ";
 import ContactForm from "@/components/ContactForm";
 import { services, getService } from "@/data/services";
+import { getPrimaryLocations, getSecondaryLocations } from "@/data/locations";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -78,6 +79,36 @@ export default async function ServicePage({ params }: Props) {
                   Whether you need full-service packing, specialty item handling, or access to our 40,000 square feet of
                   climate-controlled storage, we have the resources and expertise to make your move stress-free.
                 </p>
+              </div>
+
+              {/* Areas We Serve */}
+              <div className="mb-12">
+                <h2 className="text-2xl font-bold text-dark mb-4">
+                  {service.name} Across Southwest Florida
+                </h2>
+                <p className="text-gray-600 mb-4">
+                  We provide {service.name.toLowerCase()} services throughout Lee County and Collier County, including:
+                </p>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-4">
+                  {getPrimaryLocations().map((loc) => (
+                    <Link
+                      key={loc.slug}
+                      href={`/areas-served/${loc.slug}`}
+                      className="text-sm text-primary hover:underline font-medium py-1"
+                    >
+                      {service.name} in {loc.name} →
+                    </Link>
+                  ))}
+                  {getSecondaryLocations().map((loc) => (
+                    <Link
+                      key={loc.slug}
+                      href={`/areas-served/${loc.slug}`}
+                      className="text-sm text-gray-600 hover:text-primary transition py-1"
+                    >
+                      {loc.name} →
+                    </Link>
+                  ))}
+                </div>
               </div>
 
               {service.faqs.length > 0 && (

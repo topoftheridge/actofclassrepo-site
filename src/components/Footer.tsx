@@ -14,10 +14,10 @@ const quickLinks = [
 const topAreas = [
   { name: "Fort Myers", href: "/areas-served/fort-myers" },
   { name: "Cape Coral", href: "/areas-served/cape-coral" },
-  { name: "Estero", href: "/areas-served/estero" },
+  { name: "Naples", href: "/areas-served/naples" },
   { name: "Bonita Springs", href: "/areas-served/bonita-springs" },
-  { name: "McGregor", href: "/areas-served/mcgregor" },
-  { name: "Whiskey Creek", href: "/areas-served/whiskey-creek" },
+  { name: "Estero", href: "/areas-served/estero" },
+  { name: "Villas", href: "/areas-served/villas" },
 ];
 
 const socials = [
