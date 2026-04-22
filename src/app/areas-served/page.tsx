@@ -67,7 +67,7 @@ export default function AreasServedPage() {
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {featuredCommunities.map((c) => (
-              <Link
+              <a
                 key={`${c.citySlug}-${c.anchor}`}
                 href={`/areas-served/${c.citySlug}#${c.anchor}`}
                 className="group bg-white rounded-lg p-5 shadow-sm border border-gray-100 hover:shadow-md hover:border-primary/20 transition-all"
@@ -78,7 +78,7 @@ export default function AreasServedPage() {
                 <span className="inline-block mt-3 text-primary text-base font-medium group-hover:translate-x-1 transition-transform">
                   Learn More →
                 </span>
-              </Link>
+              </a>
             ))}
           </div>
         </div>
