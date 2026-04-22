@@ -9,7 +9,7 @@ import {
   getLocationSlugs,
   getPrimaryLocations,
   getSecondaryLocations,
-  fortMyersNeighborhoods,
+  cityNeighborhoods,
 } from "@/data/locations";
 import { services } from "@/data/services";
 
@@ -37,7 +37,7 @@ export default async function LocationPage({ params }: Props) {
   if (!location) notFound();
 
   const isSecondary = location.tier === "secondary";
-  const isFortMyers = location.slug === "fort-myers";
+  const neighborhoodSection = cityNeighborhoods[location.slug];
 
   // Build "Other Areas" links — show primary cities first, then secondary
   const primaryLocations = getPrimaryLocations().filter((l) => l.slug !== slug);
@@ -121,18 +121,17 @@ export default async function LocationPage({ params }: Props) {
                 </div>
               )}
 
-              {/* Fort Myers: Neighborhoods We Serve section */}
-              {isFortMyers && (
+              {/* Neighborhoods / sub-areas section for primary cities */}
+              {neighborhoodSection && (
                 <div className="mb-12">
-                  <h2 className="text-2xl font-bold text-dark mb-6">
-                    Neighborhoods We Serve in Fort Myers
+                  <h2 className="text-2xl font-bold text-dark mb-4">
+                    {neighborhoodSection.heading}
                   </h2>
                   <p className="text-gray-600 mb-6">
-                    Our team knows Fort Myers inside and out. Here are some of the many neighborhoods
-                    and communities where we provide professional moving services:
+                    {neighborhoodSection.intro}
                   </p>
                   <div className="space-y-4">
-                    {fortMyersNeighborhoods.map((n) => (
+                    {neighborhoodSection.neighborhoods.map((n) => (
                       <div
                         key={n.name}
                         className="p-4 rounded-lg bg-gray-50 border border-gray-100"

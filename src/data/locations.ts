@@ -12,13 +12,169 @@ export interface Location {
   parentCity?: string; // slug of parent city for secondary/neighborhood
 }
 
-/** Neighborhoods listed inside the Fort Myers page (no standalone pages) */
+/** Neighborhoods/sub-areas listed inside city pages (no standalone pages) */
 export interface Neighborhood {
   name: string;
   description: string;
 }
 
-export const fortMyersNeighborhoods: Neighborhood[] = [
+/** Map of city slug → section heading + neighborhoods */
+export interface CityNeighborhoodSection {
+  heading: string;
+  intro: string;
+  neighborhoods: Neighborhood[];
+}
+
+export const cityNeighborhoods: Record<string, CityNeighborhoodSection> = {
+  "cape-coral": {
+    heading: "Areas We Serve Throughout Cape Coral",
+    intro:
+      "Cape Coral is a big city with distinct areas, and we've moved families across all of them. Whether you're in a waterfront home off Pelican or a new build in the Northwest Cape, our crews know the terrain.",
+    neighborhoods: [
+      {
+        name: "Pelican",
+        description:
+          "One of Cape Coral's most desirable areas with canal-front homes, Gulf access, and a relaxed waterfront lifestyle along the Caloosahatchee.",
+      },
+      {
+        name: "Burnt Store",
+        description:
+          "The northern corridor of Cape Coral featuring newer construction, large lots, and communities like Burnt Store Marina with direct Gulf access.",
+      },
+      {
+        name: "Trafalgar",
+        description:
+          "A well-established area in the heart of Cape Coral with mature neighborhoods, good schools, and easy access to shopping and dining along Del Prado.",
+      },
+      {
+        name: "Yacht Club",
+        description:
+          "A Cape Coral landmark area centered around the Yacht Club Community Park, featuring older Florida homes, a public beach, and a strong neighborhood identity.",
+      },
+      {
+        name: "Southwest Cape",
+        description:
+          "Premium real estate with deep-water canal access and sailboat access to the Gulf. Home to some of Cape Coral's most sought-after waterfront properties.",
+      },
+      {
+        name: "Northwest Cape",
+        description:
+          "Cape Coral's fastest-growing area with new developments, larger homesites, and expanding infrastructure. A popular choice for families building new.",
+      },
+    ],
+  },
+  "bonita-springs": {
+    heading: "Areas We Serve in Bonita Springs",
+    intro:
+      "Bonita Springs has a mix of luxury gated communities and established neighborhoods, and we've been moving families through all of them for over two decades.",
+    neighborhoods: [
+      {
+        name: "Bonita Bay",
+        description:
+          "A premier gated community featuring championship golf, a private beach park, and a mix of single-family homes and high-rise condos along Estero Bay.",
+      },
+      {
+        name: "Spanish Wells",
+        description:
+          "A well-established gated golf community with a country club atmosphere, mature landscaping, and a tight-knit residential feel off US-41.",
+      },
+      {
+        name: "Pelican Landing",
+        description:
+          "A large gated community with canoe and kayak trails, a private beach island, and a range of homes from condos to estate properties.",
+      },
+      {
+        name: "Imperial Shores",
+        description:
+          "Waterfront living along the Imperial River with dock access, older Florida charm, and a quieter pace just minutes from downtown Bonita.",
+      },
+      {
+        name: "Spring Creek",
+        description:
+          "A residential area in eastern Bonita Springs offering newer homes, family-friendly neighborhoods, and convenient access to I-75 and local shopping.",
+      },
+    ],
+  },
+  "estero": {
+    heading: "Communities We Serve in Estero",
+    intro:
+      "Estero is packed with well-planned communities, and our crews have moved families into and out of most of them. We know the gate codes, the loading zones, and the best routes.",
+    neighborhoods: [
+      {
+        name: "Coconut Point Area",
+        description:
+          "The commercial and residential hub of Estero centered around Coconut Point Mall, with nearby condos, townhomes, and single-family communities.",
+      },
+      {
+        name: "Bella Terra",
+        description:
+          "A gated community off Corkscrew Road with Mediterranean-inspired homes, resort-style amenities, and a family-friendly atmosphere.",
+      },
+      {
+        name: "The Brooks",
+        description:
+          "One of Estero's premier communities featuring multiple neighborhoods, a nature preserve, championship golf, and a range of home styles.",
+      },
+      {
+        name: "Grandezza",
+        description:
+          "A bundled golf community with well-maintained homes, a beautiful clubhouse, and a welcoming atmosphere for active adults and families.",
+      },
+      {
+        name: "Corkscrew Corridor",
+        description:
+          "The eastern stretch of Estero along Corkscrew Road, home to newer developments, open spaces, and growing residential communities near FGCU.",
+      },
+    ],
+  },
+  "naples": {
+    heading: "Neighborhoods We Serve in Naples",
+    intro:
+      "Naples is a city of distinct neighborhoods, each with its own character. Our team handles moves across all of them with the care and professionalism Naples residents expect.",
+    neighborhoods: [
+      {
+        name: "North Naples",
+        description:
+          "A thriving area anchored by Mercato and Vanderbilt Beach, featuring newer communities, upscale shopping, and easy access to pristine Gulf beaches.",
+      },
+      {
+        name: "Golden Gate",
+        description:
+          "One of Naples' largest residential areas offering affordable homes, established neighborhoods, and a strong community feel east of downtown.",
+      },
+      {
+        name: "Park Shore",
+        description:
+          "An upscale neighborhood bordering Venetian Bay with waterfront condos, luxury single-family homes, and walkable access to the Village Shops.",
+      },
+      {
+        name: "Pelican Bay",
+        description:
+          "A prestigious gated community with private beach access, a nature preserve, and a mix of high-rises and single-family homes in a resort-like setting.",
+      },
+      {
+        name: "Old Naples",
+        description:
+          "The historic heart of the city with charming cottages, luxury estates, and walkable access to Fifth Avenue South, Third Street, and the Naples Pier.",
+      },
+      {
+        name: "East Naples",
+        description:
+          "A diverse residential area with affordable options, established communities, and proximity to Bayview Park, the Botanical Garden, and Collier Boulevard shopping.",
+      },
+    ],
+  },
+};
+
+// Keep backward compat alias
+export const fortMyersNeighborhoods = cityNeighborhoods["fort-myers"]?.neighborhoods ?? [];
+
+// Fort Myers neighborhoods stored here too
+cityNeighborhoods["fort-myers"] = {
+  heading: "Neighborhoods We Serve in Fort Myers",
+  intro:
+    "Our team knows Fort Myers inside and out. Here are some of the many neighborhoods and communities where we provide professional moving services:",
+  neighborhoods: [
   {
     name: "Allen Park",
     description:
@@ -104,7 +260,8 @@ export const fortMyersNeighborhoods: Neighborhood[] = [
     description:
       "A quiet neighborhood with space, decent schools, nearby shopping, and parks. Suburban without feeling isolated — practical and family-friendly.",
   },
-];
+  ],
+};
 
 export const locations: Location[] = [
   // ── Primary Cities ──
