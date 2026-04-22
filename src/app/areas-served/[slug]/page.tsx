@@ -10,6 +10,25 @@ import {
   cityNeighborhoods,
 } from "@/data/locations";
 import { services } from "@/data/services";
+import {
+  Home,
+  Building2,
+  MapPin,
+  Armchair,
+  Sparkles,
+  Heart,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+
+/** Map service slugs to Lucide icons */
+const serviceIcons: Record<string, LucideIcon> = {
+  "residential-moving": Home,
+  "apartment-moving": Building2,
+  "local-moving": MapPin,
+  "furniture-movers": Armchair,
+  "luxury-moving": Sparkles,
+  "senior-moving": Heart,
+};
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -70,21 +89,24 @@ export default async function LocationPage({ params }: Props) {
                 or across the state, our trained professional crews handle every detail.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
-                {services.map((s) => (
-                  <Link
-                    key={s.slug}
-                    href={`/services/${s.slug}`}
-                    className="flex items-center gap-3 p-4 rounded-lg border border-gray-100 hover:border-primary/20 hover:shadow-sm transition"
-                  >
-                    <span className="text-2xl">{s.icon}</span>
-                    <div>
-                      <p className="font-semibold text-dark">
-                        {s.name} in {location.name}
-                      </p>
-                      <p className="text-xs text-gray-500">Learn more →</p>
-                    </div>
-                  </Link>
-                ))}
+                {services.map((s) => {
+                  const Icon = serviceIcons[s.slug] ?? MapPin;
+                  return (
+                    <Link
+                      key={s.slug}
+                      href={`/services/${s.slug}`}
+                      className="flex items-center gap-3 p-4 rounded-lg border border-gray-100 hover:border-primary/20 hover:shadow-sm transition"
+                    >
+                      <Icon className="w-6 h-6 text-primary shrink-0" />
+                      <div>
+                        <p className="font-semibold text-dark">
+                          {s.name} in {location.name}
+                        </p>
+                        <p className="text-xs text-gray-500">Learn more →</p>
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
 
               <h2 className="text-2xl font-bold text-dark mb-4">
@@ -117,6 +139,23 @@ export default async function LocationPage({ params }: Props) {
                       >
                         <h3 className="font-semibold text-dark mb-1">{n.name}</h3>
                         <p className="text-gray-600 text-sm">{n.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* FAQs */}
+              {location.faqs && location.faqs.length > 0 && (
+                <div className="mb-12">
+                  <h2 className="text-2xl font-bold text-dark mb-6">
+                    Frequently Asked Questions About Moving in {location.name}
+                  </h2>
+                  <div className="space-y-6">
+                    {location.faqs.map((faq, i) => (
+                      <div key={i}>
+                        <h3 className="font-semibold text-dark mb-2">{faq.question}</h3>
+                        <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
                       </div>
                     ))}
                   </div>

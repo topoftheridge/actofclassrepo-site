@@ -1,3 +1,8 @@
+export interface LocationFAQ {
+  question: string;
+  answer: string;
+}
+
 export interface Location {
   slug: string;
   name: string;
@@ -8,6 +13,7 @@ export interface Location {
   zipCodes: string[];
   /** One-liner about the zip codes / service area */
   zipCodesBlurb: string;
+  faqs?: LocationFAQ[];
 }
 
 /** Neighborhoods/sub-areas listed inside city pages (no standalone pages) */
@@ -133,10 +139,37 @@ export const locations: Location[] = [
       "40,000 sq ft climate-controlled storage",
     ],
     aboutCommunity:
-      "Fort Myers is the heart of Southwest Florida, known for its beautiful riverfront, historic downtown, and warm community spirit. From the Edison & Ford Winter Estates to the vibrant arts scene, Fort Myers offers a quality of life that draws families and professionals from across the country.",
+      "Fort Myers is the heart of Southwest Florida, known for its beautiful riverfront, historic downtown, and strong sense of community. From the Edison & Ford Winter Estates to the vibrant River District, the city offers a mix of history, culture, and modern growth. With its year-round warm weather, expanding neighborhoods, and proximity to beaches, Fort Myers continues to attract families, retirees, and professionals alike. Whether you're moving within the city or relocating to the area, demand for reliable moving services remains strong throughout Fort Myers.",
     zipCodes: ["33901", "33905", "33907", "33908", "33912", "33919"],
     zipCodesBlurb:
-      "We serve customers throughout Fort Myers, including 33901, 33905, 33907, 33908, 33912, 33919, and surrounding areas.",
+      "We provide full-service moving throughout Fort Myers and surrounding areas, including 33901, 33905, 33907, 33908, 33912, and 33919.",
+    faqs: [
+      {
+        question: "How much does it cost to hire movers in Fort Myers?",
+        answer:
+          "Moving costs can vary depending on the size of your move, distance, and the services you need. Every move is different, so we recommend requesting a free estimate to get accurate pricing based on your specific situation.",
+      },
+      {
+        question: "How far in advance should I book movers in Fort Myers?",
+        answer:
+          "We recommend booking at least 1 to 2 weeks in advance. During busy times in Southwest Florida, especially spring and summer, availability can fill up quickly, so earlier scheduling is always a good idea.",
+      },
+      {
+        question: "Are you familiar with Fort Myers neighborhoods and local routes?",
+        answer:
+          "Yes, we service all areas of Fort Myers and are familiar with major roads like McGregor Blvd, Colonial Blvd, and Summerlin Road, helping ensure efficient and well-planned moves.",
+      },
+      {
+        question: "Do you offer packing services for moves in Fort Myers?",
+        answer:
+          "Yes, we offer packing services to help make your move easier. Whether you need full packing or just assistance with certain items, we can tailor the service to your needs.",
+      },
+      {
+        question: "Can you accommodate last-minute moves in Fort Myers?",
+        answer:
+          "Depending on availability, we may be able to assist with last-minute or short-notice moves. We recommend reaching out as soon as possible to check scheduling.",
+      },
+    ],
   },
   {
     slug: "cape-coral",
@@ -154,7 +187,7 @@ export const locations: Location[] = [
       "Cape Coral is one of the fastest-growing cities in Florida, famous for its extensive canal system — more than 400 miles of navigable waterways. The city offers a blend of outdoor recreation, family-friendly neighborhoods, and a thriving local economy.",
     zipCodes: ["33904", "33909", "33914", "33990", "33991", "33993"],
     zipCodesBlurb:
-      "We serve customers throughout Cape Coral, including 33904, 33909, 33914, 33990, 33991, and surrounding areas.",
+      "Our moving services cover all of Cape Coral, including 33904, 33909, 33914, 33990, 33991, and nearby areas.",
   },
   {
     slug: "bonita-springs",
@@ -172,7 +205,7 @@ export const locations: Location[] = [
       "Bonita Springs sits between Fort Myers and Naples, offering the best of both worlds. Known for its beautiful beaches, world-class golf courses, and upscale communities, Bonita Springs attracts families and retirees looking for the quintessential Southwest Florida lifestyle.",
     zipCodes: ["34133", "34134", "34135"],
     zipCodesBlurb:
-      "We serve customers throughout Bonita Springs, including 34133, 34134, 34135, and surrounding areas.",
+      "We proudly serve Bonita Springs and surrounding communities, including 34133, 34134, 34135, and nearby zip codes.",
   },
   {
     slug: "estero",
@@ -190,7 +223,7 @@ export const locations: Location[] = [
       "Estero has that sweet spot — close enough to Fort Myers for convenience but far enough for peace. With FGCU, Coconut Point, and plenty of parks, it feels like a real community, not just another Florida suburb.",
     zipCodes: ["33928", "33929"],
     zipCodesBlurb:
-      "We serve customers throughout Estero, including 33928, 33929, and surrounding areas.",
+      "Moving services are available throughout Estero, including 33928, 33929, and surrounding areas.",
   },
   {
     slug: "naples",
@@ -208,7 +241,7 @@ export const locations: Location[] = [
       "Naples is one of Florida's most prestigious coastal cities, renowned for its pristine beaches, world-class dining, and upscale shopping along Fifth Avenue South and Third Street. Home to stunning communities like Pelican Bay, Grey Oaks, and Port Royal, Naples attracts discerning residents who expect nothing less than the best.",
     zipCodes: ["34102", "34103", "34105", "34108", "34109", "34119"],
     zipCodesBlurb:
-      "We serve customers throughout Naples, including 34102, 34103, 34105, 34108, 34109, 34119, and surrounding areas.",
+      "We provide moving services across Naples, including 34102, 34103, 34105, 34108, 34109, 34119, and nearby communities.",
   },
 ];
 
