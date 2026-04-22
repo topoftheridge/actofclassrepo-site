@@ -33,7 +33,7 @@ export interface CityNeighborhoodSection {
 
 export const cityNeighborhoods: Record<string, CityNeighborhoodSection> = {
   "fort-myers": {
-    heading: "Neighborhoods We Serve in Fort Myers",
+    heading: "Neighborhoods We Serve in Fort Myers, FL",
     intro:
       "Our team knows Fort Myers inside and out. Here are some of the many neighborhoods and communities where we provide professional moving services:",
     neighborhoods: [
@@ -60,7 +60,7 @@ export const cityNeighborhoods: Record<string, CityNeighborhoodSection> = {
     ],
   },
   "cape-coral": {
-    heading: "Areas We Serve Throughout Cape Coral",
+    heading: "Areas We Serve Throughout Cape Coral, FL",
     intro:
       "Cape Coral is a big city with distinct areas, and we've moved families across all of them. Whether you're in a waterfront home off Pelican or a new build in the Northwest Cape, our crews know the terrain.",
     neighborhoods: [
@@ -73,7 +73,7 @@ export const cityNeighborhoods: Record<string, CityNeighborhoodSection> = {
     ],
   },
   "bonita-springs": {
-    heading: "Areas We Serve in Bonita Springs",
+    heading: "Areas We Serve in Bonita Springs, FL",
     intro:
       "Bonita Springs has a mix of luxury gated communities and established neighborhoods, and we've been moving families through all of them for over two decades.",
     neighborhoods: [
@@ -85,7 +85,7 @@ export const cityNeighborhoods: Record<string, CityNeighborhoodSection> = {
     ],
   },
   "estero": {
-    heading: "Communities We Serve in Estero",
+    heading: "Communities We Serve in Estero, FL",
     intro:
       "Estero is packed with well-planned communities, and our crews have moved families into and out of most of them. We know the gate codes, the loading zones, and the best routes.",
     neighborhoods: [
@@ -97,7 +97,7 @@ export const cityNeighborhoods: Record<string, CityNeighborhoodSection> = {
     ],
   },
   "naples": {
-    heading: "Neighborhoods We Serve in Naples",
+    heading: "Neighborhoods We Serve in Naples, FL",
     intro:
       "Naples is a city of distinct neighborhoods, each with its own character. Our team handles moves across all of them with the care and professionalism Naples residents expect.",
     neighborhoods: [
@@ -131,7 +131,7 @@ export const locations: Location[] = [
     name: "Fort Myers",
     adjective: "Trusted",
     description:
-      "As Fort Myers' premier moving company, we know this city inside and out. From the historic River District to quiet suburban streets, our team navigates every corner of Fort Myers with confidence and care.",
+      "As a trusted moving company in Fort Myers, FL, we provide reliable residential and local moving services throughout the area.",
     highlights: [
       "Over 20 years serving Fort Myers families",
       "Deep knowledge of local neighborhoods and traffic patterns",
@@ -184,10 +184,22 @@ export const locations: Location[] = [
       "Specialty item handling",
     ],
     aboutCommunity:
-      "Cape Coral is one of the fastest-growing cities in Florida, famous for its extensive canal system — more than 400 miles of navigable waterways. The city offers a blend of outdoor recreation, family-friendly neighborhoods, and a thriving local economy.",
+      "Cape Coral is one of the fastest-growing cities in Florida, known for its extensive canal system with over 400 miles of navigable waterways. The city offers a blend of outdoor recreation, family-friendly neighborhoods, and a growing local economy. With its waterfront homes, expanding communities, and year-round demand for relocations, Cape Coral continues to attract families, retirees, and professionals alike. Whether you're moving within the city or relocating to the area, reliable moving services are essential throughout Cape Coral.",
     zipCodes: ["33904", "33909", "33914", "33990", "33991", "33993"],
     zipCodesBlurb:
       "Our moving services cover all of Cape Coral, including 33904, 33909, 33914, 33990, 33991, and nearby areas.",
+    faqs: [
+      {
+        question: "Do you handle moves in canal-front and waterfront homes?",
+        answer:
+          "Yes, we regularly handle moves throughout Cape Coral's canal and waterfront properties. Our team is experienced with the unique layouts and access considerations that come with these types of homes.",
+      },
+      {
+        question: "How do you plan routes for moves in Cape Coral?",
+        answer:
+          "We take into account major roads like Del Prado Blvd, Pine Island Road, and Santa Barbara Blvd to plan efficient routes and minimize delays on moving day.",
+      },
+    ],
   },
   {
     slug: "bonita-springs",
@@ -202,10 +214,27 @@ export const locations: Location[] = [
       "Climate-controlled storage nearby",
     ],
     aboutCommunity:
-      "Bonita Springs sits between Fort Myers and Naples, offering the best of both worlds. Known for its beautiful beaches, world-class golf courses, and upscale communities, Bonita Springs attracts families and retirees looking for the quintessential Southwest Florida lifestyle.",
+      "Bonita Springs, FL sits between Fort Myers and Naples, offering the best of both worlds for those relocating to Southwest Florida. Known for its beautiful beaches, golf courses, and upscale communities, the area attracts families, retirees, and seasonal residents alike. With steady growth and a mix of coastal and residential neighborhoods, it continues to see strong demand for local moving services. Whether you're moving within the area or coming from out of town, having a reliable moving company is essential for a smooth transition.",
     zipCodes: ["34133", "34134", "34135"],
     zipCodesBlurb:
       "We proudly serve Bonita Springs and surrounding communities, including 34133, 34134, 34135, and nearby zip codes.",
+    faqs: [
+      {
+        question: "What makes moving in Bonita Springs different from other areas?",
+        answer:
+          "Bonita Springs moves often involve gated communities, coastal properties, and seasonal residents. Our team is familiar with these factors and plans accordingly to ensure a smooth moving experience.",
+      },
+      {
+        question: "Do you handle moves in gated communities and private neighborhoods?",
+        answer:
+          "Yes, we regularly handle moves in Bonita Springs' gated communities and private neighborhoods. We're familiar with access procedures and community requirements to keep your move running smoothly.",
+      },
+      {
+        question: "Are you familiar with Bonita Springs roads and local areas?",
+        answer:
+          "Yes, we service all areas of Bonita Springs and are familiar with major routes like US-41 and Bonita Beach Road, allowing us to plan efficient and timely moves.",
+      },
+    ],
   },
   {
     slug: "estero",
@@ -220,10 +249,32 @@ export const locations: Location[] = [
       "Licensed and insured professionals",
     ],
     aboutCommunity:
-      "Estero has that sweet spot — close enough to Fort Myers for convenience but far enough for peace. With FGCU, Coconut Point, and plenty of parks, it feels like a real community, not just another Florida suburb.",
+      "Estero, FL offers a balance of convenience and quiet living, located just south of Fort Myers in the heart of Southwest Florida. Known for its growing communities, FGCU, Coconut Point, and well-maintained parks, the area continues to attract families, students, and professionals. With ongoing development and a mix of newer neighborhoods, Estero sees steady demand for local moving services throughout the area.",
     zipCodes: ["33928", "33929"],
     zipCodesBlurb:
       "Moving services are available throughout Estero, including 33928, 33929, and surrounding areas.",
+    faqs: [
+      {
+        question: "Do you handle moves in Estero's planned communities?",
+        answer:
+          "Yes, we regularly work in Estero's residential communities and are familiar with access points, layouts, and typical move-in requirements found in these neighborhoods.",
+      },
+      {
+        question: "What should I know before moving in Estero?",
+        answer:
+          "Estero is known for its newer communities and master-planned developments, which often have specific move-in guidelines. Planning ahead helps ensure everything goes smoothly on moving day.",
+      },
+      {
+        question: "Are you familiar with the Estero area and surrounding routes?",
+        answer:
+          "Yes, we service the entire Estero area and plan routes around major roads like US-41 and Corkscrew Road to keep your move efficient and on schedule.",
+      },
+      {
+        question: "Can you help prepare for a move in Estero?",
+        answer:
+          "Yes, we offer packing assistance and can help organize your move ahead of time to make the process easier and more efficient.",
+      },
+    ],
   },
   {
     slug: "naples",
@@ -238,10 +289,32 @@ export const locations: Location[] = [
       "Climate-controlled storage in Southwest Florida",
     ],
     aboutCommunity:
-      "Naples is one of Florida's most prestigious coastal cities, renowned for its pristine beaches, world-class dining, and upscale shopping along Fifth Avenue South and Third Street. Home to stunning communities like Pelican Bay, Grey Oaks, and Port Royal, Naples attracts discerning residents who expect nothing less than the best.",
+      "Naples, FL is one of Florida's most prestigious coastal cities, known for its pristine beaches, upscale shopping, and world-class dining along Fifth Avenue South and Third Street. Home to luxury communities like Pelican Bay, Grey Oaks, and Port Royal, the area attracts residents who value quality, privacy, and a high-end lifestyle. With its mix of waterfront estates, gated neighborhoods, and high-rise condominiums, Naples continues to see strong demand for professional moving services.",
     zipCodes: ["34102", "34103", "34105", "34108", "34109", "34119"],
     zipCodesBlurb:
       "We provide moving services across Naples, including 34102, 34103, 34105, 34108, 34109, 34119, and nearby communities.",
+    faqs: [
+      {
+        question: "What types of moves are most common in Naples?",
+        answer:
+          "Naples moves often involve luxury homes, waterfront properties, and high-rise condominiums. Each type of move requires careful planning to ensure everything is handled properly from start to finish.",
+      },
+      {
+        question: "Do you have experience with high-rise and condo moves in Naples?",
+        answer:
+          "Yes, we regularly handle moves in Naples condominiums and high-rise buildings. We're familiar with scheduling requirements, elevator access, and building guidelines to keep your move organized and efficient.",
+      },
+      {
+        question: "Are you familiar with Naples neighborhoods and key routes?",
+        answer:
+          "Yes, we service all areas of Naples and are familiar with major roads like Tamiami Trail and Immokalee Road, helping ensure smooth and efficient moves throughout the area.",
+      },
+      {
+        question: "Do you offer luxury or high-end moving services in Naples?",
+        answer:
+          "Yes, we regularly handle high-end and luxury moves throughout Naples. From waterfront estates to upscale condominiums, our team takes extra care with valuable and delicate items, ensuring everything is handled with attention and precision from start to finish.",
+      },
+    ],
   },
 ];
 

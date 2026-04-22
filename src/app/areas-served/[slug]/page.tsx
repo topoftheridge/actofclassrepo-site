@@ -110,7 +110,7 @@ export default async function LocationPage({ params }: Props) {
               </div>
 
               <h2 className="text-2xl font-bold text-dark mb-4">
-                About {location.name}, FL
+                About Moving in {location.name}, FL
               </h2>
               <p className="text-gray-600 mb-8 leading-relaxed">
                 {location.aboutCommunity}
