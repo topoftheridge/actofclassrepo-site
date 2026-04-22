@@ -6,7 +6,7 @@ import SplitHero from "@/components/SplitHero";
 import FAQ from "@/components/FAQ";
 import ContactForm from "@/components/ContactForm";
 import { services, getService } from "@/data/services";
-import { getPrimaryLocations, getSecondaryLocations } from "@/data/locations";
+import { locations } from "@/data/locations";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -90,22 +90,13 @@ export default async function ServicePage({ params }: Props) {
                   We provide {service.name.toLowerCase()} services throughout Lee County and Collier County, including:
                 </p>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-4">
-                  {getPrimaryLocations().map((loc) => (
+                  {locations.map((loc) => (
                     <Link
                       key={loc.slug}
                       href={`/areas-served/${loc.slug}`}
                       className="text-sm text-primary hover:underline font-medium py-1"
                     >
                       {service.name} in {loc.name} →
-                    </Link>
-                  ))}
-                  {getSecondaryLocations().map((loc) => (
-                    <Link
-                      key={loc.slug}
-                      href={`/areas-served/${loc.slug}`}
-                      className="text-sm text-gray-600 hover:text-primary transition py-1"
-                    >
-                      {loc.name} →
                     </Link>
                   ))}
                 </div>

@@ -25,7 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${BASE_URL}/areas-served/${l.slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
-    priority: l.tier === "primary" ? 0.8 : 0.6,
+    priority: 0.8,
   }));
 
   return [...staticPages, ...servicePages, ...locationPages];

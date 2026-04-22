@@ -17,7 +17,6 @@ const topAreas = [
   { name: "Naples", href: "/areas-served/naples" },
   { name: "Bonita Springs", href: "/areas-served/bonita-springs" },
   { name: "Estero", href: "/areas-served/estero" },
-  { name: "Villas", href: "/areas-served/villas" },
 ];
 
 const socials = [

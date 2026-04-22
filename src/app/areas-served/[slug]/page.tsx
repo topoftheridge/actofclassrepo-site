@@ -7,8 +7,6 @@ import {
   locations,
   getLocation,
   getLocationSlugs,
-  getPrimaryLocations,
-  getSecondaryLocations,
   cityNeighborhoods,
 } from "@/data/locations";
 import { services } from "@/data/services";
@@ -36,12 +34,8 @@ export default async function LocationPage({ params }: Props) {
   const location = getLocation(slug);
   if (!location) notFound();
 
-  const isSecondary = location.tier === "secondary";
-  const neighborhoodSection = cityNeighborhoods[location.slug];
-
-  // Build "Other Areas" links — show primary cities first, then secondary
-  const primaryLocations = getPrimaryLocations().filter((l) => l.slug !== slug);
-  const secondaryLocations = getSecondaryLocations().filter((l) => l.slug !== slug);
+  const neighborhoodSection = cityNeighborhoods[slug];
+  const otherCities = locations.filter((l) => l.slug !== slug);
 
   return (
     <>
@@ -55,20 +49,6 @@ export default async function LocationPage({ params }: Props) {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Main Content */}
             <div className="lg:col-span-2">
-              {/* Secondary pages: reference Fort Myers in intro */}
-              {isSecondary && location.parentCity && (
-                <p className="text-gray-600 mb-8 text-lg">
-                  {location.name} is located in the greater{" "}
-                  <Link
-                    href={`/areas-served/${location.parentCity}`}
-                    className="text-primary font-semibold hover:underline"
-                  >
-                    Fort Myers
-                  </Link>{" "}
-                  area. Our team has been proudly serving this community for over 20 years.
-                </p>
-              )}
-
               <h2 className="text-2xl font-bold text-dark mb-6">
                 Why Choose Act of Class for Your {location.name} Move?
               </h2>
@@ -114,14 +94,12 @@ export default async function LocationPage({ params }: Props) {
                 {location.aboutCommunity}
               </p>
 
-              {location.zipCodes && location.zipCodes.length > 0 && (
-                <div className="mb-8">
-                  <h3 className="font-semibold text-dark mb-2">Zip Codes Served</h3>
-                  <p className="text-gray-600">{location.zipCodes.join(", ")}</p>
-                </div>
-              )}
+              {/* Zip codes */}
+              <div className="mb-8 p-4 bg-gray-50 rounded-lg border border-gray-100">
+                <p className="text-gray-700 text-sm">{location.zipCodesBlurb}</p>
+              </div>
 
-              {/* Neighborhoods / sub-areas section for primary cities */}
+              {/* Neighborhoods / sub-areas */}
               {neighborhoodSection && (
                 <div className="mb-12">
                   <h2 className="text-2xl font-bold text-dark mb-4">
@@ -133,8 +111,9 @@ export default async function LocationPage({ params }: Props) {
                   <div className="space-y-4">
                     {neighborhoodSection.neighborhoods.map((n) => (
                       <div
-                        key={n.name}
-                        className="p-4 rounded-lg bg-gray-50 border border-gray-100"
+                        key={n.anchor}
+                        id={n.anchor}
+                        className="p-4 rounded-lg bg-gray-50 border border-gray-100 scroll-mt-24"
                       >
                         <h3 className="font-semibold text-dark mb-1">{n.name}</h3>
                         <p className="text-gray-600 text-sm">{n.description}</p>
@@ -144,48 +123,23 @@ export default async function LocationPage({ params }: Props) {
                 </div>
               )}
 
-              {/* Other Areas We Serve */}
+              {/* Other Cities */}
               <h2 className="text-2xl font-bold text-dark mb-4">
-                Other Areas We Serve
+                Other Cities We Serve
               </h2>
-              <div className="mb-3">
-                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">
-                  Cities
-                </h3>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                  {primaryLocations.map((loc) => (
-                    <Link
-                      key={loc.slug}
-                      href={`/areas-served/${loc.slug}`}
-                      className="text-sm text-gray-700 hover:text-primary font-medium transition py-1"
-                    >
-                      {loc.name}, FL →
-                    </Link>
-                  ))}
-                </div>
-              </div>
-              {secondaryLocations.length > 0 && (
-                <div className="mt-4">
-                  <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">
-                    Communities
-                  </h3>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                    {secondaryLocations.map((loc) => (
-                      <Link
-                        key={loc.slug}
-                        href={`/areas-served/${loc.slug}`}
-                        className="text-sm text-gray-600 hover:text-primary transition py-1"
-                      >
-                        {loc.name}, FL →
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-              <div className="mt-4">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {otherCities.map((loc) => (
+                  <Link
+                    key={loc.slug}
+                    href={`/areas-served/${loc.slug}`}
+                    className="text-sm text-gray-700 hover:text-primary font-medium transition py-1"
+                  >
+                    {loc.name}, FL →
+                  </Link>
+                ))}
                 <Link
                   href="/areas-served"
-                  className="text-sm text-primary font-semibold hover:underline"
+                  className="text-sm text-primary font-semibold hover:underline py-1"
                 >
                   View All Areas →
                 </Link>

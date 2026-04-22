@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { services } from "@/data/services";
 import { locations } from "@/data/locations";
+// locations now contains only the 5 primary cities
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -73,22 +74,20 @@ export default function Navbar() {
                 </Link>
                 {areasOpen && (
                   <div className="absolute top-full left-0 mt-0 pt-2">
-                    <div className="bg-primary rounded-lg shadow-lg py-3 px-2 w-[480px]">
-                      <div className="grid grid-cols-3 gap-0.5">
-                        {locations.map((loc) => (
-                          <Link
-                            key={loc.slug}
-                            href={`/areas-served/${loc.slug}`}
-                            className="block px-3 py-1.5 text-sm text-white/90 hover:bg-accent hover:text-dark rounded transition"
-                          >
-                            {loc.name}
-                          </Link>
-                        ))}
-                      </div>
-                      <div className="border-t border-white/20 mt-2 pt-2 px-1">
+                    <div className="bg-primary rounded-lg shadow-lg py-2 w-56">
+                      {locations.map((loc) => (
+                        <Link
+                          key={loc.slug}
+                          href={`/areas-served/${loc.slug}`}
+                          className="block px-4 py-2 text-sm text-white/90 hover:bg-accent hover:text-dark transition"
+                        >
+                          {loc.name}
+                        </Link>
+                      ))}
+                      <div className="border-t border-white/20 mt-1 pt-1">
                         <Link
                           href="/areas-served"
-                          className="block px-3 py-1.5 text-sm font-semibold text-accent hover:bg-accent hover:text-dark rounded transition"
+                          className="block px-4 py-2 text-sm font-semibold text-accent hover:bg-accent hover:text-dark transition"
                         >
                           View All Areas →
                         </Link>
@@ -175,7 +174,7 @@ export default function Navbar() {
                 Areas Served
               </Link>
               <div className="pl-4 mt-2 space-y-2">
-                {locations.slice(0, 10).map((loc) => (
+                {locations.map((loc) => (
                   <Link
                     key={loc.slug}
                     href={`/areas-served/${loc.slug}`}
