@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import Hero from "@/components/Hero";
 import LocationCard from "@/components/LocationCard";
-import { locations, cityNeighborhoods } from "@/data/locations";
+import { locations } from "@/data/locations";
 
 export const metadata: Metadata = {
   title: "Areas Served | Act of Class Moving & Storage",
@@ -10,29 +10,26 @@ export const metadata: Metadata = {
     "Act of Class Moving & Storage proudly serves Fort Myers, Cape Coral, Naples, Estero, Bonita Springs, and communities throughout Lee County and Collier County in Southwest Florida.",
 };
 
+/** Featured communities shown on the main areas-served page with anchor links */
+const featuredCommunities = [
+  { name: "Villas", citySlug: "fort-myers", anchor: "villas" },
+  { name: "Cypress Lake", citySlug: "fort-myers", anchor: "cypress-lake" },
+  { name: "Harlem Heights", citySlug: "fort-myers", anchor: "harlem-heights" },
+  { name: "Pelican", citySlug: "cape-coral", anchor: "pelican" },
+  { name: "Burnt Store", citySlug: "cape-coral", anchor: "burnt-store" },
+  { name: "Trafalgar", citySlug: "cape-coral", anchor: "trafalgar" },
+  { name: "Bonita Bay", citySlug: "bonita-springs", anchor: "bonita-bay" },
+  { name: "Spanish Wells", citySlug: "bonita-springs", anchor: "spanish-wells" },
+  { name: "Pelican Landing", citySlug: "bonita-springs", anchor: "pelican-landing" },
+  { name: "Bella Terra", citySlug: "estero", anchor: "bella-terra" },
+  { name: "The Brooks", citySlug: "estero", anchor: "the-brooks" },
+  { name: "Grandezza", citySlug: "estero", anchor: "grandezza" },
+  { name: "Golden Gate", citySlug: "naples", anchor: "golden-gate" },
+  { name: "Park Shore", citySlug: "naples", anchor: "park-shore" },
+  { name: "East Naples", citySlug: "naples", anchor: "east-naples" },
+];
+
 export default function AreasServedPage() {
-  // Build a flat list of all neighborhoods with their parent city info
-  const allNeighborhoods: Array<{
-    name: string;
-    anchor: string;
-    citySlug: string;
-    cityName: string;
-  }> = [];
-
-  for (const loc of locations) {
-    const section = cityNeighborhoods[loc.slug];
-    if (section) {
-      for (const n of section.neighborhoods) {
-        allNeighborhoods.push({
-          name: n.name,
-          anchor: n.anchor,
-          citySlug: loc.slug,
-          cityName: loc.name,
-        });
-      }
-    }
-  }
-
   return (
     <>
       <Hero
@@ -68,16 +65,14 @@ export default function AreasServedPage() {
             In addition to the major cities we serve, we also provide moving services in select
             communities and neighborhoods throughout Southwest Florida.
           </p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
-            {allNeighborhoods.map((n) => (
-              <Link
-                key={`${n.citySlug}-${n.anchor}`}
-                href={`/areas-served/${n.citySlug}#${n.anchor}`}
-                className="text-sm text-gray-700 hover:text-primary transition py-2 px-3 rounded-lg border border-gray-100 hover:border-primary/20 hover:shadow-sm"
-              >
-                <span className="font-medium">{n.name}</span>
-                <span className="block text-xs text-gray-400 mt-0.5">{n.cityName}</span>
-              </Link>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            {featuredCommunities.map((c) => (
+              <LocationCard
+                key={`${c.citySlug}-${c.anchor}`}
+                name={c.name}
+                slug={`${c.citySlug}#${c.anchor}`}
+                adjective=""
+              />
             ))}
           </div>
         </div>

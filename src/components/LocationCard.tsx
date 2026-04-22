@@ -3,7 +3,7 @@ import Link from "next/link";
 interface LocationCardProps {
   name: string;
   slug: string;
-  adjective: string;
+  adjective?: string;
 }
 
 export default function LocationCard({ name, slug, adjective }: LocationCardProps) {
