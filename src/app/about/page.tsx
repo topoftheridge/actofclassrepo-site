@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Hero from "@/components/Hero";
+import { Star } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -11,29 +12,34 @@ export default function AboutPage() {
   return (
     <>
       <Hero
-        title="About Act of Class Moving & Storage"
-        subtitle="Family-owned. Community-rooted. Committed to excellence for over 20 years."
+        title="Fort Myers Moving Company | Act of Class Moving & Storage"
+        subtitle="Act of Class Moving & Storage is a trusted Fort Myers moving company providing residential, commercial, and storage services across Southwest Florida — delivering reliable, professional moves backed by 20+ years of experience."
         showCTA={false}
       />
 
       <section className="py-16 lg:py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-dark mb-6">Our Story</h2>
+          <h2 className="text-3xl font-bold text-dark mb-6">
+            Our Story – Built in Fort Myers, Trusted Across Southwest Florida
+          </h2>
           <div className="prose prose-gray max-w-none">
             <p className="text-lg text-gray-600 leading-relaxed mb-6">
-              Act of Class Moving & Storage LLC was founded in Fort Myers, Florida, with a simple mission:
-              to be the best-in-class for moving services. Over two decades later, that mission hasn&apos;t
-              changed — but we&apos;ve grown from a small crew into one of Southwest Florida&apos;s most
-              trusted moving companies.
+              Founded in Fort Myers, Florida, Act of Class Moving &amp; Storage was built on a simple
+              mission: deliver dependable, high-quality moving services that people can trust. Over the
+              past 20+ years, we&apos;ve grown from a small local crew into one of the most recognized
+              moving companies in Southwest Florida, serving areas including Fort Myers, Cape Coral,
+              Bonita Springs, Estero, and Naples.
             </p>
             <p className="text-gray-600 leading-relaxed mb-6">
-              As a family-owned and operated business, every move we complete reflects directly on our name.
-              That personal accountability drives everything we do — from the way we hire and train our crews
-              to the care we take with every piece of furniture, every box, and every family heirloom.
+              As a family-owned and operated moving company, every move we complete reflects directly on
+              our name. That level of accountability drives everything we do — from how we hire and train
+              our crews to the care we take with every piece of furniture, every box, and every family
+              heirloom.
             </p>
             <p className="text-gray-600 leading-relaxed mb-6">
-              We believe that a labor-oriented service company rides on reputation. That&apos;s why we hire the
-              best in class staff who understand and pledge to deliver every act as an act of class.
+              We believe a service-based business is built on reputation. That&apos;s why our team is
+              committed to delivering every move with professionalism, precision, and care — ensuring each
+              experience truly reflects an Act of Class.
             </p>
           </div>
 
@@ -77,15 +83,40 @@ export default function AboutPage() {
             ))}
           </div>
 
+          {/* Serving Fort Myers Section */}
+          <h2 className="text-3xl font-bold text-dark mb-6">Serving Fort Myers and Surrounding Areas</h2>
+          <p className="text-gray-600 leading-relaxed mb-12">
+            If you&apos;re searching for a reliable moving company in Southwest Florida, our team is ready
+            to help. Whether you need a local move, long-distance relocation, or storage services, Act of
+            Class Moving &amp; Storage delivers a seamless experience from start to finish.
+          </p>
+
+          {/* BBB Accredited */}
           <h2 className="text-3xl font-bold text-dark mb-6">BBB Accredited</h2>
           <p className="text-gray-600 leading-relaxed mb-4">
             We&apos;re proud to be accredited by the Better Business Bureau, reflecting our commitment to
             trust, transparency, and customer satisfaction. Our accreditation is a testament to the way
             we conduct business — honestly and with integrity.
           </p>
-          <div className="bg-gray-50 rounded-xl p-6 inline-block border border-gray-100">
+          <div className="bg-gray-50 rounded-xl p-6 inline-block border border-gray-100 mb-8">
             <p className="text-sm text-gray-500">BBB Accredited Business</p>
             <p className="font-semibold text-dark">Act of Class Moving & Storage LLC</p>
+          </div>
+
+          {/* Google Rating */}
+          <div className="bg-gray-50 rounded-xl p-6 border border-gray-100">
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-1">
+                {[1, 2, 3, 4].map((i) => (
+                  <Star key={i} className="w-6 h-6 fill-yellow-400 text-yellow-400" />
+                ))}
+                <Star className="w-6 h-6 text-yellow-400" style={{ clipPath: "inset(0 20% 0 0)" }} />
+              </div>
+              <div>
+                <p className="font-bold text-dark text-lg">4.8 Stars on Google</p>
+                <p className="text-sm text-gray-500">Based on verified customer reviews</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
