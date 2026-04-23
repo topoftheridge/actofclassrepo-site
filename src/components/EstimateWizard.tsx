@@ -163,7 +163,7 @@ export default function EstimateWizard() {
               <input
                 type="text"
                 value={fromZip}
-                onChange={(e) => setFromZip(e.target.value.replace(/[^\d-]/g, "").slice(0, 10))}
+                onChange={(e) => setFromZip(e.target.value.replace(/\D/g, "").slice(0, 5))}
                 onBlur={() => setTouched((t) => ({ ...t, fromZip: true }))}
                 placeholder="33901"
                 className={`w-full px-3.5 py-2.5 rounded-lg border outline-none transition text-sm focus:ring-2 ${
@@ -181,7 +181,7 @@ export default function EstimateWizard() {
               <input
                 type="text"
                 value={toZip}
-                onChange={(e) => setToZip(e.target.value.replace(/[^\d-]/g, "").slice(0, 10))}
+                onChange={(e) => setToZip(e.target.value.replace(/\D/g, "").slice(0, 5))}
                 onBlur={() => setTouched((t) => ({ ...t, toZip: true }))}
                 placeholder="34102"
                 className={`w-full px-3.5 py-2.5 rounded-lg border outline-none transition text-sm focus:ring-2 ${

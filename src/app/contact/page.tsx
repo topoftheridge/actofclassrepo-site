@@ -74,13 +74,18 @@ export default function ContactPage() {
             </Link>
           </div>
 
-          {/* Map */}
-          <div className="mt-12 bg-gray-100 rounded-xl h-64 flex items-center justify-center border border-gray-200">
-            <div className="text-center text-gray-400">
-              <p className="text-4xl mb-2">🗺️</p>
-              <p className="font-medium">Map</p>
-              <p className="text-sm">Fort Myers, FL</p>
-            </div>
+          {/* Google Map */}
+          <div className="mt-12 rounded-xl overflow-hidden border border-gray-200">
+            <iframe
+              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCWEkCFDamQ_QuMIR1TYqOyEwGfuj63mK8&q=2775+N+Airport+Rd+%23109,+Fort+Myers,+FL+33907"
+              width="100%"
+              height="350"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Act of Class Moving & Storage Location"
+            />
           </div>
         </div>
       </section>

@@ -3,6 +3,7 @@
 import { useBooking } from "@/context/BookingContext";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import AddressAutocomplete from "@/components/AddressAutocomplete";
 
 const US_STATES = [
   "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA",
@@ -25,7 +26,6 @@ export default function DestinationPage() {
     if (!canProceed) return;
     update({ destUseManual: showManual });
     setSubmitting(true);
-    // Simulate loading
     setTimeout(() => {
       router.push("/book-online/confirmation");
     }, 2000);
@@ -34,19 +34,16 @@ export default function DestinationPage() {
   if (submitting) {
     return (
       <div className="flex flex-col items-center justify-center py-20">
-        {/* Moving truck animation */}
-        <div className="relative w-32 h-20 mb-6">
-          <div className="animate-bounce-slow">
-            <svg viewBox="0 0 128 80" className="w-32 h-20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="2" y="20" width="70" height="40" rx="4" fill="#812f25" />
-              <rect x="72" y="30" width="36" height="30" rx="3" fill="#a04035" />
-              <rect x="78" y="34" width="14" height="12" rx="2" fill="#c9d6df" />
-              <circle cx="24" cy="64" r="8" fill="#333" />
-              <circle cx="24" cy="64" r="4" fill="#888" />
-              <circle cx="90" cy="64" r="8" fill="#333" />
-              <circle cx="90" cy="64" r="4" fill="#888" />
-            </svg>
-          </div>
+        <div className="animate-bounce-slow">
+          <svg viewBox="0 0 128 80" className="w-28 h-16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="20" width="70" height="40" rx="4" fill="#812f25" />
+            <rect x="72" y="30" width="36" height="30" rx="3" fill="#a04035" />
+            <rect x="78" y="34" width="14" height="12" rx="2" fill="#c9d6df" />
+            <circle cx="24" cy="64" r="8" fill="#333" />
+            <circle cx="24" cy="64" r="4" fill="#888" />
+            <circle cx="90" cy="64" r="8" fill="#333" />
+            <circle cx="90" cy="64" r="4" fill="#888" />
+          </svg>
         </div>
         <p className="text-lg font-semibold text-dark animate-pulse">Processing your request...</p>
       </div>
@@ -63,12 +60,13 @@ export default function DestinationPage() {
         {!showManual && (
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Address</label>
-            <input
-              type="text"
+            <AddressAutocomplete
               value={data.destAddress}
-              onChange={(e) => update({ destAddress: e.target.value })}
+              onChange={(val) => update({ destAddress: val })}
+              onPlaceSelect={(place) => {
+                update({ destAddress: place.formatted });
+              }}
               placeholder="Start typing your destination address..."
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary/20 focus:border-primary transition outline-none text-base"
             />
             <button
               type="button"
@@ -137,8 +135,9 @@ export default function DestinationPage() {
                 <input
                   type="text"
                   value={data.destManualZip}
-                  onChange={(e) => update({ destManualZip: e.target.value })}
+                  onChange={(e) => update({ destManualZip: e.target.value.replace(/\D/g, "").slice(0, 5) })}
                   placeholder="33901"
+                  maxLength={5}
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary/20 focus:border-primary transition outline-none text-base"
                 />
               </div>

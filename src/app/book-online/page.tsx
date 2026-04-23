@@ -3,6 +3,7 @@
 import { useBooking } from "@/context/BookingContext";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import AddressAutocomplete from "@/components/AddressAutocomplete";
 
 export default function ServiceLocationPage() {
   const { data, update } = useBooking();
@@ -32,16 +33,15 @@ export default function ServiceLocationPage() {
             <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
               Address
             </label>
-            <input
-              type="text"
+            <AddressAutocomplete
               id="address"
               value={data.address}
-              onChange={(e) => update({ address: e.target.value })}
+              onChange={(val) => update({ address: val })}
+              onPlaceSelect={(place) => {
+                update({ address: place.formatted });
+              }}
               placeholder="Start typing your address..."
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary/20 focus:border-primary transition outline-none text-base"
-              autoComplete="street-address"
             />
-            {/* TODO: Attach Google Places / address autocomplete API here */}
             <button
               type="button"
               onClick={() => setShowManual(true)}
@@ -103,8 +103,9 @@ export default function ServiceLocationPage() {
                   type="text"
                   id="zip"
                   value={data.manualZip}
-                  onChange={(e) => update({ manualZip: e.target.value })}
+                  onChange={(e) => update({ manualZip: e.target.value.replace(/\D/g, "").slice(0, 5) })}
                   placeholder="33901"
+                  maxLength={5}
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary/20 focus:border-primary transition outline-none text-base"
                 />
               </div>
